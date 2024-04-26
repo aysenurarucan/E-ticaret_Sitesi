@@ -1,0 +1,45 @@
+extends ../layouts/main-layout.pug 
+
+block styles
+    link(rel='stylesheet' href='/css/login.css')
+
+block content 
+    form(action="/register" method="POST")
+        //- input(type='hidden' name='_csrf' value=`${csrfToken}`)
+        .register-container
+            h2 Register
+            form
+                label(for="name") Name:
+                input(type="text", id="name", name="name", required)
+
+                label(for="email") Email:
+                input(type="email", id="email", name="email", required)
+
+                label(for="password") Password:
+                input(type="password", id="password", name="password", required)
+
+                label(for="isAdmin") User Type:
+                select(id="isAdmin" name="isAdmin" required)
+                    option(value="admin") admin
+                    option(value="customer") customer
+
+                label(for="submit") 
+                input(type="submit" value="Kaydet").btn.btn-primary
+
+
+block script 
+    script.
+        function saveCredentials() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var isAdmin = document.getElementById("isAdmin").value;
+
+            
+            localStorage.setItem("savedName", name);
+            localStorage.setItem("savedEmail", email);
+            localStorage.setItem("savedPassword", password);    
+            localStorage.setItem("savedisAdmin", isAdmin); 
+        }
+
+
